@@ -1,0 +1,72 @@
+<div class="col-sm-12">
+	<div class="well">
+
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h4 style="color: #fff">Editing - <b>{{edit.popup.name}}</b></h4></div>
+			<div class="panel-body">
+				<form name="EditPopup">
+					<div class="form-group">
+						<label><h5>Name</h5></label>
+						<input type="text" class="form-control" ng-maxlength="100" ng-model="edit.popup.name" ng-required="true">
+					</div>
+
+					<div class="form-group">
+						<label><h5>Redirect Link</h5></label>
+						<input type="text" class="form-control" ng-maxlength="100" ng-model="edit.popup.redirectLink" ng-required="true">
+					</div>
+
+					<div class="form-group">
+						<label><h5>Delay</h5></label>
+						<select ng-model="edit.popup.display" ng-required="true">
+							<option value="instantly">Instantly</option>
+							<option value="smallDelay">5 seconds</option>
+							<option value="analyticsDelay">Average site time</option>
+						</select>
+					</div>
+
+          <!-- <h5>Start Date</h5>
+          <md-datepicker ng-model="edit.popup.startTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+
+          <h5>Expiry Date</h5>
+          <md-datepicker ng-model="edit.popup.endTime" md-placeholder="Enter date" ng-required="true"></md-datepicker> -->
+
+          <h5>Start Date</h5>
+          <md-datepicker ng-model="edit.strDate" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+
+          <h5>Expiry Date</h5>
+          <md-datepicker ng-model="edit.expDate" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+
+          <div class="form-group">
+            <label>Desktop Picture Link</label>
+            <input type="text" class="form-control" ng-required="true" ng-model="edit.popup.desktopImg">
+            <p class="text-success">760x400px</p>
+          </div>
+          <img ng-if="edit.popup.desktopImg" ng-src="{{edit.popup.desktopImg}}">
+
+          <div class="form-group">
+            <label>Mobile Picture Link</label>
+            <input type="text" class="form-control" ng-required="true" ng-model="edit.popup.mobileImg">
+            <p class="text-success">250x320px</p>
+          </div>
+          <img ng-if="edit.popup.mobileImg" ng-src="{{edit.popup.mobileImg}}">
+
+          <div class="well">
+            <p>Use <a href="http://tinypic.com/"><b>TinyPic</b></a> to upload your image and then paste the <b class="text-info">'Direct Link for Layouts'</b> text in the box below.
+            <br>
+            <b>MAKE SURE YOU ARE USING THE CORRECT SIZES:</b><br>
+            <b>Desktop</b> &mdash; 760x400px<br>
+            <b>Mobile</b> &mdash; 250x320px<br></p>
+            <p>If you've done it correctly, you should see your image displayed below</p>
+          </div>
+
+
+
+							<!-- <h5>Expiry Date</h5>
+							<md-datepicker ng-model="edit.expDate" md-placeholder="Enter date" ng-required="true"></md-datepicker> -->
+        </form>
+				<br>
+				<button class="btn btn-success btn-lg" ng-disabled="EditPopup.$invalid" ng-click="edit.UpdatePopup()">Update Popup</button>
+			</div>
+		</div>
+	</div>
+</div>

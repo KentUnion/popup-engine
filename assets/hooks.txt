@@ -1,0 +1,27 @@
+popup.name
+	"Short description"
+  
+popup.startTime
+  "time in ms, as Date().getTime()"
+  
+popup.endTime
+  "time in ms, as Date().getTime()"
+  
+popup.redirectLink
+  "url"
+  
+popup.desktopImg
+  "url" - (.png, landscape 760x400px recommended)
+  
+popup.mobileImg
+  "url" - (.png, portrait 250x320px recommended)
+
+popup.display
+  'instantly'       0 s
+  'smallDelay'      <5 s
+  'analyticsDelay'  avg ga timeonsite
+
+popup.id
+  "firebase ID string" - (Generated on FB side, read and push after popup creation)
+  
+  

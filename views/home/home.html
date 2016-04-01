@@ -1,0 +1,170 @@
+<div class="well">
+	<div class="panel panel-primary">
+		<div class="panel-heading" ng-click="home.toggles.running = !home.toggles.running">
+			<h4 style="color: #fff"><b>Running popups
+				<span ng-if="home.toggles.running">(click to collapse)</span>
+				<span ng-if="!home.toggles.running">(click to expand)</span></b>
+			</h4></div>
+		<div class="panel-body slide-toggle" ng-show="home.toggles.running">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>Name</td>
+						<td>Expires On</td>
+                        <td>Started On</td>
+						<td>Preview</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="popup in home.popups | orderBy:'-endTime' | filter: home.gtDate('endTime', home.currentTime)">
+						<td>{{$index + 1}}</td>
+						<td>{{popup.name}}</td>
+						<td>{{popup.endTime | date:'medium'}}</td>
+                        <td>{{popup.startTime | date:'medium'}}</td>
+						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg">
+							<p ng-if="!popup.desktopImg">No preview available</p>
+						</td>
+						<td>
+							<button class="btn btn-success" ng-click="home.EditPopup(popup.$id)">Edit</button>
+							<button class="btn btn-danger" ng-click="home.DeletePopup(popup.$id)">Remove</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+    <div class="panel panel-info">
+		<div class="panel-heading" ng-click="home.toggles.scheduled = !home.toggles.scheduled">
+			<h4 style="color: #fff"><b>Scheduled popups
+				<span ng-if="home.toggles.scheduled">(click to collapse)</span>
+				<span ng-if="!home.toggles.scheduled">(click to expand)</span></b>
+			</h4></div>
+		<div class="panel-body slide-toggle" ng-show="home.toggles.scheduled">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>Name</td>
+                        <td>Starts On</td>
+						<td>Expires On</td>
+						<td>Preview</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="popup in home.popups | orderBy:'-startTime' | filter: home.gtDate('endTime', home.currentTime)">
+						<td>{{$index + 1}}</td>
+						<td>{{popup.name}}</td>
+                        <td>{{popup.startTime | date:'medium'}}</td>
+						<td>{{popup.endTime | date:'medium'}}</td>
+						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg">
+							<p ng-if="!popup.desktopImg">No preview available</p>
+						</td>
+						<td>
+							<button class="btn btn-success" ng-click="home.EditPopup(popup.$id)">Edit</button>
+							<button class="btn btn-danger" ng-click="home.DeletePopup(popup.$id)">Remove</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+  
+	<div class="panel panel-danger">
+		<div class="panel-heading" ng-click="home.toggles.expired = !home.toggles.expired">
+			<h4 style="color: #fff"><b>Expired Popups<span ng-if="home.toggles.expired">(click to collapse)</span>
+			<span ng-if="!home.toggles.expired">(click to expand)</span></b></h4></div>
+		<div class="panel-body" ng-show="home.toggles.expired">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>Name</td>
+						<td>Expired On</td>
+						<td>Started On</td>
+						<td>Preview</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="popup in home.popups | orderBy:'-endTime' | filter: home.ltDate('endTime', home.currentTime)">
+						<td>{{$index + 1}}</td>
+						<td>{{popup.name}}</td>
+						<td>{{popup.endTime | date:'medium'}}</td>
+                        <td>{{popup.startTime | date:'medium'}}</td>
+						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg">
+							<p ng-if="!popup.desktopImg">No preview available</p>
+						</td>
+						<td>
+							<button class="btn btn-success" ng-click="home.EditPopup(popup.$id)">Edit</button>
+							<button class="btn btn-danger" ng-click="home.DeletePopup(popup.$id)">Remove</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-success">
+		<div class="panel-heading" ng-click="home.toggles.createNew = !home.toggles.createNew">
+			<h4 style="color: #fff"><b>Create New Popup<span ng-if="home.toggles.createNew">(click to collapse)</span>
+			<span ng-if="!home.toggles.createNew">(click to expand)</span></b></h4></div>
+		<div class="panel-body" ng-show="home.toggles.createNew">
+			<form name="NewPopup">
+				<div class="form-group">
+					<label>
+						<h5>Name</h5></label>
+					<input type="text" class="form-control" ng-maxlength="100" ng-model="home.newPopup.name" ng-required="true">
+				</div>
+
+				<div class="form-group">
+					<label>
+						<h5>Redirect Link</h5></label>
+					<input type="text" class="form-control" ng-maxlength="100" ng-model="home.newPopup.redirectLink" ng-required="true">
+				</div>
+
+				<div class="form-group">
+					<label>
+						<h5>Delay</h5></label>
+					<select ng-model="home.newPopup.display" ng-required="true">
+						<option value="instantly">Instantly</option>
+						<option value="smallDelay">5 seconds</option>
+						<option value="analyticsDelay">Average site time</option>
+					</select>
+				</div>
+
+				<h5>Start Date</h5>
+				<md-datepicker ng-model="home.newPopup.startTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+
+				<h5>Expiry Date</h5>
+				<md-datepicker ng-model="home.newPopup.endTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+
+				<div class="form-group">
+					<label>Desktop Picture Link</label>
+					<input type="text" class="form-control" ng-required="true" ng-model="home.newPopup.desktopImg">
+					<p class="text-success">760x400px</p>
+				</div>
+				<div class="form-group">
+					<label>Mobile Picture Link</label>
+					<input type="text" class="form-control" ng-required="true" ng-model="home.newPopup.mobileImg">
+					<p class="text-success">250x320px</p>
+				</div>
+				<div class="well">
+					<p>Use <a href="http://tinypic.com/"><b>TinyPic</b></a> to upload your image and then paste the <b class="text-info">'Direct Link for Layouts'</b> text in the box below.
+					<br>
+					<b>MAKE SURE YOU ARE USING THE CORRECT SIZES:</b><br>
+					<b>Desktop</b> &mdash; 760x400px<br>
+					<b>Mobile</b> &mdash; 250x320px<br>
+					</p>
+					<p>If you've done it correctly, you should see your image displayed below.</p>
+				</div>
+				<img ng-if="home.newPopup.desktopImg" ng-src="{{home.newPopup.desktopImg}}">
+			</form>
+			<br>
+			<button class="btn btn-success btn-lg" ng-disabled="NewPopup.$invalid" ng-click="home.AddPopup()">Add Popup</button>
+		</div>
+	</div>
+</div>
