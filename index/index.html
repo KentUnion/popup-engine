@@ -27,15 +27,25 @@
 
 		<div ng-view id="viewsContainer"></div>
 
+		<!-- @if NODE_ENV='development' -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-aria.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.4/angular-material.js"></script>
+		<!-- @endif -->
 
+		<!-- @if NODE_ENV='production' -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-aria.min.js"></script>
-		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 		<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
-		
 		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.4/angular-material.min.js"></script>
+		<!-- @endif -->
+		
+		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 
 		<!-- @if NODE_ENV='development' -->
 		<script src="dist/build.js"></script> 
