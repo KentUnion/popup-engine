@@ -55,72 +55,9 @@
        mobileImg: ''
     };
 
-    // // Add Answer
-    // home.AddAnswer = function(answer) {
-    //   if( answer ) {
-    //     home.newSurvey.answers.push({text: answer});
-    //   }
-
-    //   home.newAnswer = null;
-    // };
-
-    // // TODO: Delete Answer!
-    // home.RemoveAnswer = function(answer) {
-    //   var index = home.newSurvey.answers.indexOf(answer);
-    //   if (index > -1) {
-    //     home.newSurvey.answers.splice(index, 1);
-    //     console.log('Removed Successfully!');
-    //   }
-    // };
-
-    // // Brands
-    // home.newBrand = {
-    //   name: '',
-    //   image: ''
-    // };
-    // home.currentBrand = '';
-
-    // home.brands = $firebaseArray(fbutil.ref('brands'));
-    // home.AddBrand = function() {
-    //   home.brands.$add(home.newBrand).then(function(ref) {
-    //     home.newBrand = {
-    //       name: '',
-    //       image: ''
-    //     };
-    //   });
-    // };
-    // home.SaveBrand = function() {
-    //   home.brands[home.currentBrand].name = home.newBrand.name;
-    //   home.brands[home.currentBrand].image = home.newBrand.image;
-
-    //   home.brands.$save(home.currentBrand).then(function(ref) {
-    //     home.currentBrand = '';
-    //     home.isBrandEdit = false;
-    //     home.newBrand = {
-    //       name: '',
-    //       image: ''
-    //     };
-    //   });
-    // };
-    // home.EditBrand = function(id) {
-    //   var posArray = home.brands.$indexFor(id);
-    //   home.currentBrand = posArray;
-    //   home.isBrandEdit = true;
-    //   home.newBrand = {
-    //     name: home.brands[posArray].name,
-    //     image: home.brands[posArray].image
-    //   };
-    // };
-    // home.DeleteBrand = function(id) {
-    //   var posArray = home.brands.$indexFor(id);
-    //   home.brands.$remove(posArray).then(function() {
-    //     console.log("Removed brand!");
-    //   });
-    // };
-
     // List
     // home.popups = $firebaseArray(fbutil.ref('surveys'));
-    home.popups = $firebaseArray;
+    home.popups = $firebaseArray(fbutil.ref());
 
     // Add
     home.AddPopup = function() {
