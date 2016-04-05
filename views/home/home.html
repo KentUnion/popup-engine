@@ -18,7 +18,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="popup in home.popups | orderBy:'-endTime' | filter: home.gtDate('endTime', home.currentTime)">
+					<tr ng-repeat="popup in home.popups | orderBy:'-endTime' | filter: home.rDate('startTime', 'endTime', home.currentTime)">
 						<td>{{$index + 1}}</td>
 						<td>{{popup.name}}</td>
                         <td>{{popup.startTime | date:'medium'}}</td>
@@ -55,7 +55,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="popup in home.popups | orderBy:'-startTime' | filter: home.gtDate('endTime', home.currentTime)">
+					<tr ng-repeat="popup in home.popups | orderBy:'-startTime' | filter: home.gtDate('startTime', home.currentTime)">
 						<td>{{$index + 1}}</td>
 						<td>{{popup.name}}</td>
                         <td>{{popup.startTime | date:'medium'}}</td>

@@ -29,16 +29,24 @@
       createNew: false
     };
 
-    // TODO filter scheduled popups out
-
-    // filter expired popups out
+    // Date filtering
     home.currentTime = (new Date()).getTime();
+
+    // Greater than date (scheduled popups)
     home.gtDate = function(prop, val) {
       return function(item){
         return item[prop] > val;
       };
     };
 
+    // Range date (running popups)
+    home.rDate = function(startProp, endProp, val) {
+      return function(item){
+        return (item[startProp] < val) && (val < item[endProp]);
+      };
+    };
+
+    // Less than date (expired popups)
     home.ltDate = function(prop, val) {
         return function(item){
             return item[prop] < val;
