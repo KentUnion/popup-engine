@@ -11,8 +11,8 @@
 					<tr>
 						<td>#</td>
 						<td>Name</td>
+						<td>Started On</td>
 						<td>Expires On</td>
-                        <td>Started On</td>
 						<td>Preview</td>
 						<td>Actions</td>
 					</tr>
@@ -21,9 +21,9 @@
 					<tr ng-repeat="popup in home.popups | orderBy:'-endTime' | filter: home.gtDate('endTime', home.currentTime)">
 						<td>{{$index + 1}}</td>
 						<td>{{popup.name}}</td>
-						<td>{{popup.endTime | date:'medium'}}</td>
                         <td>{{popup.startTime | date:'medium'}}</td>
-						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg">
+                        <td>{{popup.endTime | date:'medium'}}</td>
+						<td><img ng-src="{{popup.desktopImg}}" size ng-if="popup.desktopImg" class="img-responsive preview-img">
 							<p ng-if="!popup.desktopImg">No preview available</p>
 						</td>
 						<td>
@@ -60,7 +60,7 @@
 						<td>{{popup.name}}</td>
                         <td>{{popup.startTime | date:'medium'}}</td>
 						<td>{{popup.endTime | date:'medium'}}</td>
-						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg">
+						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg" class="img-responsive preview-img">
 							<p ng-if="!popup.desktopImg">No preview available</p>
 						</td>
 						<td>
@@ -95,7 +95,7 @@
 						<td>{{popup.name}}</td>
 						<td>{{popup.endTime | date:'medium'}}</td>
                         <td>{{popup.startTime | date:'medium'}}</td>
-						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg">
+						<td><img ng-src="{{popup.desktopImg}}" ng-if="popup.desktopImg" class="img-responsive preview-img">
 							<p ng-if="!popup.desktopImg">No preview available</p>
 						</td>
 						<td>
@@ -136,11 +136,15 @@
 					</select>
 				</div>
 
-				<h5>Start Date</h5>
-				<md-datepicker ng-model="home.newPopup.startTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+				<div class="form-group">
+					<h5>Start Date</h5>
+					<md-datepicker ng-model="home.newPopup.startTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+				</div>
 
-				<h5>Expiry Date</h5>
-				<md-datepicker ng-model="home.newPopup.endTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+				<div class="form-group">
+					<h5>Expiry Date</h5>
+					<md-datepicker ng-model="home.newPopup.endTime" md-placeholder="Enter date" ng-required="true"></md-datepicker>
+				</div>
 
 				<div class="form-group">
 					<label>Desktop Picture Link</label>
@@ -161,7 +165,10 @@
 					</p>
 					<p>If you've done it correctly, you should see your image displayed below.</p>
 				</div>
-				<img ng-if="home.newPopup.desktopImg" ng-src="{{home.newPopup.desktopImg}}">
+				<label>Desktop Image preview</label>
+				<img ng-if="home.newPopup.desktopImg" ng-src="{{home.newPopup.desktopImg}}" class="img-responsive">
+				<label>Mobile Image preview</label>
+				<img ng-if="home.newPopup.mobileImg" ng-src="{{home.newPopup.mobileImg}}" class="img-responsive">
 			</form>
 			<br>
 			<button class="btn btn-success btn-lg" ng-disabled="NewPopup.$invalid" ng-click="home.AddPopup()">Add Popup</button>
