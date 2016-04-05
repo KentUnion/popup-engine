@@ -101,7 +101,7 @@
       });
     };
 
-    home.EditPopups = function(id) {
+    home.EditPopup = function(id) {
        $location.path('/edit/').search({popupid: id});
     };
 
